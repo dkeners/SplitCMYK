@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using Eto.Drawing;
+using Eto.Forms;
 
 using Grasshopper;
 using Grasshopper.Kernel;
@@ -28,6 +32,7 @@ namespace SplitCMYK
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
+      pManager.AddColourParameter("Colour", "C", "Colour to split", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -35,6 +40,16 @@ namespace SplitCMYK
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
+      pManager.AddNumberParameter("Cyan", "C", "Cyan channel", GH_ParamAccess.item);
+      pManager.AddNumberParameter("Magenta", "M", "Magenta channel", GH_ParamAccess.item);
+      pManager.AddNumberParameter("Yellow", "Y", "Yellow channel", GH_ParamAccess.item);
+      pManager.AddNumberParameter("Key", "K", "Key (Black) channel", GH_ParamAccess.item);
+    }
+
+    protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
+    {
+        base.AppendAdditionalComponentMenuItems(menu);
+        Menu_AppendItem(menu, "Rich Black", RichBlackClicked, true, false);
     }
 
     /// <summary>
@@ -44,6 +59,88 @@ namespace SplitCMYK
     /// to store data in output parameters.</param>
     protected override void SolveInstance(IGH_DataAccess DA)
     {
+      System.Drawing.Color colour = System.Drawing.Color.Empty;
+      if (!DA.GetData(0, ref colour))
+        return;
+
+      float c, m, y, k;
+      
+      if (RichBlackCLicked)
+      {
+        ColourToCMYKRichBlack(colour, out c, out m, out y, out k);
+      }
+      else
+      {
+        ColourToCMYK(colour, out c, out m, out y, out k);
+      }
+
+      DA.SetData(0, c);
+      DA.SetData(1, m);
+      DA.SetData(2, y);
+      DA.SetData(3, k);
+    }
+
+    /// <summary>
+    /// Convert a colour to CMYK
+    /// </summary>
+    /// <param name="colour">Colour in RGB</param>
+    /// <param name="c">Cyan</param>
+    /// <param name="m">Magenta</param>
+    /// <param name="y">Yellow</param>
+    /// <param name="k">Key</param>
+    private void ColourToCMYK(System.Drawing.Color colour, out float c, out float m, out float y, out float k)
+    {
+      if (colour == System.Drawing.Color.Empty)
+      {
+        c = m = y = k = 0;
+      }
+      else
+      {
+        float r = colour.R / 255.0f;
+        float g = colour.G / 255.0f;
+        float b = colour.B / 255.0f;
+
+        k = 1.0f - Math.Max(Math.Max(r, g), b);
+        c = (1.0f - r - k) / (1.0f - k);
+        m = (1.0f - g - k) / (1.0f - k);
+        y = (1.0f - b - k) / (1.0f - k);
+      }
+    }
+
+    /// <summary>
+    /// Convert a colour to CMYK using a rich black
+    /// </summary>
+    /// <param name="colour"></param>
+    /// <param name="c"></param>
+    /// <param name="m"></param>
+    /// <param name="y"></param>
+    /// <param name="k"></param>
+    private void ColourToCMYKRichBlack(System.Drawing.Color colour, out float c, out float m, out float y, out float k)
+    {
+      if (colour == System.Drawing.Color.Empty)
+      {
+        c = m = y = k = 0;
+      }
+      else
+      {
+        float r = colour.R / 255.0f;
+        float g = colour.G / 255.0f;
+        float b = colour.B / 255.0f;
+
+        k = 1.0f - Math.Max(Math.Max(r, g), b);
+
+        if (k == 1.0f)
+        {
+          c = 0.6f;
+          m = y = 0.4f;
+        }
+        else
+        {
+          c = (1.0f - r - k) / (1.0f - k);
+          m = (1.0f - g - k) / (1.0f - k);
+          y = (1.0f - b - k) / (1.0f - k);
+        }
+      }
     }
 
     /// <summary>
