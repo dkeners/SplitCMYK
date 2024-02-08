@@ -3,11 +3,11 @@
 Split CMYK allows for a user to get CMYK values from a Grasshopper Colour datatype (RGB).
 
 ![Static Badge](https://img.shields.io/badge/Build-v0.0.1-green)
-![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/dkeners/AutoVisualizer?label=Last%20release%20date%3A%20)
- ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dkeners/AutoVisualizer/develop?label=Lastest%20Development:)
+![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/dkeners/SplitCMYK?label=Last%20release%20date%3A%20)
+ ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dkeners/SplitCMYK/develop?label=Lastest%20development:)
 
  ![Static Badge](https://img.shields.io/badge/-4.8-blue?logo=csharp) ![Static Badge](https://img.shields.io/badge/--%23512BD4?logo=dotnet)
- ![Static Badge](https://img.shields.io/badge/-Rhino%208-black?logo=rhinoceros)
+ ![Static Badge](https://img.shields.io/badge/-Rhino%207-black?logo=rhinoceros)
 
 TODO: Add Example image here
 
