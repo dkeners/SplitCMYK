@@ -1,12 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	
   <PropertyGroup>
     <TargetFrameworks>net7.0;net48</TargetFrameworks>
+	  <UseWindowsForms>true</UseWindowsForms>
     <Version>1.0</Version>
     <Title>SplitCMYK</Title>
     <Description>Description of SplitCMYK</Description>
     <TargetExt>.gha</TargetExt>
   </PropertyGroup>
+	
+  <ItemGroup>
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Grasshopper" Version="8.4.24030.15001-rc" IncludeAssets="compile;build" />
@@ -14,5 +24,20 @@
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
