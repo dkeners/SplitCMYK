@@ -1,15 +1,15 @@
 # Split CYMK
 ## About
-Split CMYK allows for a user to get CMYK values from a Grasshopper Colour datatype (RGB).
+Split CMYK allows for a user to get CMYK values from a Grasshopper Colour datatype (RGB). Also allows for "rich black", setting C = .6, M and Y = .4, and K = 1, for darker results with certain materials.
 
-![Static Badge](https://img.shields.io/badge/Build-v0.0.1-green)
+![Static Badge](https://img.shields.io/badge/Build-v0.1.0-green)
 ![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/dkeners/SplitCMYK?label=Last%20release%20date%3A%20)
  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/dkeners/SplitCMYK/develop?label=Lastest%20development:)
 
  ![Static Badge](https://img.shields.io/badge/-4.8-blue?logo=csharp) ![Static Badge](https://img.shields.io/badge/--%23512BD4?logo=dotnet)
- ![Static Badge](https://img.shields.io/badge/-Rhino%207-black?logo=rhinoceros)
+ ![Static Badge](https://img.shields.io/badge/-Rhino%207,%208-black?logo=rhinoceros)
 
-TODO: Add Example image here
+![CMYKSplit](https://github.com/dkeners/SplitCMYK/assets/25158625/22e03386-c897-4244-b04b-b752e6ac5c3c)
 
 ## Installation
 ### PackageManager
@@ -31,4 +31,7 @@ See [LICENSE](LICENSE.txt) for details.
 Feel free to provide feedback, suggestions, or report issues. Please reach out about contributing. 
 
 ## Change Log
-See [CHANGELOG.md](CHANGELOG.md) for a detailed history of changes.
+### [0.1.0] - 2024-02-10
+#### Added
+- Split CMYK Component
+- Split CMYK Info
