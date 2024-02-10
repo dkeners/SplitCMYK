@@ -30,6 +30,11 @@ namespace SplitCMYK
         {
         }
 
+        public override GH_Exposure Exposure
+        {
+            get { return GH_Exposure.secondary; }
+        }
+
         /// <summary>
         /// Registers all the input parameters for this component.
         /// </summary>
@@ -58,7 +63,7 @@ namespace SplitCMYK
         protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
         {
             base.AppendAdditionalComponentMenuItems(menu);
-            Menu_AppendItem(menu, "Rich Black", RichBlackClicked, true, false);
+            Menu_AppendItem(menu, "Toggle Rich Black", RichBlackClicked, true, false);
         }
 
         protected override void BeforeSolveInstance()
@@ -123,9 +128,17 @@ namespace SplitCMYK
                 float b = colour.B / 255.0f;
 
                 k = 1.0f - Math.Max(Math.Max(r, g), b);
-                c = (1.0f - r - k) / (1.0f - k);
-                m = (1.0f - g - k) / (1.0f - k);
-                y = (1.0f - b - k) / (1.0f - k);
+
+                if (k == 1.0f)
+                {
+                    c = m = y = 0f;
+                }
+                else
+                {
+                    c = (1.0f - r - k) / (1.0f - k);
+                    m = (1.0f - g - k) / (1.0f - k);
+                    y = (1.0f - b - k) / (1.0f - k);
+                }
             }
         }
 
