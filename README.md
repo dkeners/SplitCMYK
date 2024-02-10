@@ -24,6 +24,9 @@ SplitCMYK can be installed by going to [Releases](https://github.com/dkeners/Spl
 1. In Grasshopper go to `File->Special Folders->Components Folder`
 2. Unzip the `SplitCMYK-X-X-X.zip` assembly to the Grasshopper Plugin folder
 
+## Usage
+Refer to the file [Example.gh](https://github.com/dkeners/SplitCMYK/blob/main/SplitCMYK/Tests/Example.gh) for an example of the component.
+
 ## License
 See [LICENSE](LICENSE.txt) for details.
 
