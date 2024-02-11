@@ -34,6 +34,10 @@ See [LICENSE](LICENSE.txt) for details.
 Feel free to provide feedback, suggestions, or report issues. Please reach out about contributing. 
 
 ## Change Log
+### [0.1.1] - 2024-02-10
+#### Changed
+- Targeted Rhinocommon SDK is 7.0 now instead of 8.0
+
 ### [0.1.0] - 2024-02-10
 #### Added
 - Split CMYK Component
